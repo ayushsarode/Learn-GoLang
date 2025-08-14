@@ -12,16 +12,19 @@ import (
 //This ensures both goroutines finish before main exits, but their order is still not guaranteed.
 func main(){
 	var wg sync.WaitGroup
+	ch := make(chan bool)
 
 	wg.Add(2)
 
 	go func() {
 		defer wg.Done()
 		fmt.Println("Hello world!")
+		ch <- true
 	}()
 
 	go func() {
 		defer wg.Done()
+		<- ch
 		fmt.Println("Goodbye!")
 	}()
 
