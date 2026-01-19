@@ -52,7 +52,7 @@ func task3MultipleGoroutines() {
 	
 	worker := func(id int) {
 		for i := 0; i < 3; i++ {
-			fmt.Printf("Worker %d: task %d", id, i+1)
+			fmt.Printf("Worker %d: task %d\n", id, i+1)
 			time.Sleep(100 * time.Millisecond)
 		}
 	}
